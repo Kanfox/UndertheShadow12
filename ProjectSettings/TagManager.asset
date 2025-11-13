@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - Chao
+  - NPC
+  - Collectible
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - NPC
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: New Layer 1
+    uniqueID: 201746129
+    locked: 0
+  - name: New Layer 2
+    uniqueID: 3142161829
+    locked: 0
+  - name: New Layer 3
+    uniqueID: 3958338109
+    locked: 0
+  - name: New Layer 4
+    uniqueID: 3310888475
+    locked: 0
+  - name: New Layer 5
+    uniqueID: 3524922703
+    locked: 0
+  - name: New Layer 6
+    uniqueID: 3291949495
+    locked: 0
+  m_RenderingLayers:
+  - Default
