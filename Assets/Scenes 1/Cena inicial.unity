@@ -3333,7 +3333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c507ab17448274dafe6a181203319e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPickup
-  pickupRadius: 0.93
+  pickupRadius: 0.8
   itemTag: Item
   itemLayer:
     serializedVersion: 2
