@@ -8,6 +8,12 @@ TagManager:
   - NPC
   - Collectible
   - Item
+  - Item1
+  - Item2
+  - Item3
+  - item1
+  - item2
+  - item3
   layers:
   - Default
   - TransparentFX
@@ -15,9 +21,9 @@ TagManager:
   - NPC
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Padre
+  - panel
+  - Itens
   - 
   - 
   - 
@@ -62,6 +68,24 @@ TagManager:
     locked: 0
   - name: New Layer 6
     uniqueID: 3291949495
+    locked: 0
+  - name: New Layer 7
+    uniqueID: 2452425293
+    locked: 0
+  - name: New Layer 8
+    uniqueID: 29879455
+    locked: 0
+  - name: New Layer 9
+    uniqueID: 1010698333
+    locked: 0
+  - name: New Layer 10
+    uniqueID: 3436163219
+    locked: 0
+  - name: New Layer 11
+    uniqueID: 3100832455
+    locked: 0
+  - name: New Layer 12
+    uniqueID: 1324759731
     locked: 0
   m_RenderingLayers:
   - Default
