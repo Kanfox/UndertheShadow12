@@ -2,19 +2,27 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
+    [Header("Configurações de Ataque")]
     public Transform player;
     public float attackRange = 2f;
     public float attackCooldown = 1.5f;
     public Animator animator;
 
+    [Header("Configurações de Som")]
+    public AudioSource audioSource;
+    public AudioClip attackSound;
+    [Tooltip("Intervalo mínimo em segundos entre reproduções do som")]
+    public float soundInterval = 0.5f; // Agora configurável no Inspector
+
     private bool isAttacking = false;
     private float lastAttackTime = 0f;
+    private float lastSoundTime = 0f;
 
     void Update()
     {
         float distance = Vector3.Distance(player.position, transform.position);
 
-        // Se jogador est� no alcance, n�o est� atacando, e cooldown acabou
+        // Se jogador está no alcance, não está atacando, e cooldown acabou
         if (distance <= attackRange && !isAttacking && Time.time >= lastAttackTime + attackCooldown)
         {
             StartCoroutine(Attack());
@@ -26,11 +34,17 @@ public class EnemyAttack : MonoBehaviour
         isAttacking = true;
         lastAttackTime = Time.time;
 
-        // Inicia anima��o de ataque
+        // Inicia animação de ataque
         animator.SetTrigger("Attack");
 
-        // Espera at� o fim da anima��o para permitir novo ataque
-        // Voc� pode ajustar isso para tempo fixo se preferir
+        // Toca som de ataque se passou intervalo mínimo desde o último som
+        if (audioSource != null && attackSound != null && Time.time >= lastSoundTime + soundInterval)
+        {
+            audioSource.PlayOneShot(attackSound);
+            lastSoundTime = Time.time;
+        }
+
+        // Espera até o fim da animação para permitir novo ataque
         float attackDuration = animator.GetCurrentAnimatorStateInfo(0).length;
         yield return new WaitForSeconds(attackDuration);
 
