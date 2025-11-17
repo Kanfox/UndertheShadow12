@@ -1,18 +1,29 @@
 using UnityEngine;
+using TMPro;
 
 public class PlayerPickup : MonoBehaviour
 {
-    public float pickupRadius = 2f;
-    public string itemTag = "Item";
+    public float pickupRadius = 0.5f;
     public LayerMask itemLayer;
+    public string itemTag = "Item";
+    public GameObject mensagemPainelPrefab;
+    public TextMeshProUGUI mensagemTextPrefab;
 
-    public GameObject novoPersonagemPrefab; // Prefab do novo personagem a ser spawnado
-    public Transform spawnPoint;            // Ponto arrastável para spawn no inspetor
+    // ITEM ESPECIAL
+    public string specialItemTag = "ItemEspecial";
+    public GameObject painelEspecial; // Arraste o painel já pronto da cena aqui!
 
-    private int coletados = 0;
-    private bool novoPersonagemSpawnado = false;
+    // OUTRO PERSONAGEM
+    public GameObject outroPersonagemPrefab;
 
-    void OnDrawGizmosSelected()
+    // SPAWN POINT PARA NOVO PERSONAGEM
+    public Transform spawnPointNovoPersonagem;
+
+    private bool personagemSpawnado = false;
+    private int itensColetados = 0;
+    public int itensNecessarios = 3;
+
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, pickupRadius);
@@ -20,76 +31,80 @@ public class PlayerPickup : MonoBehaviour
 
     void Update()
     {
-        if (novoPersonagemSpawnado)
-            return;
-
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Collider2D[] itemsNaArea = Physics2D.OverlapCircleAll(transform.position, pickupRadius, itemLayer);
-            Debug.Log("Detectados " + itemsNaArea.Length + " itens na área!");
-
-            foreach (Collider2D item in itemsNaArea)
+            RaycastHit2D hit = Physics2D.CircleCast(transform.position, pickupRadius, Vector2.zero, 0f, itemLayer);
+            if (hit.collider != null)
             {
-                Debug.Log("Nome detectado: " + item.name + " | Tag: " + item.tag + " | Layer:" + LayerMask.LayerToName(item.gameObject.layer));
+                var item = hit.collider.gameObject;
+
+                // --- Item comum ---
                 if (item.CompareTag(itemTag))
                 {
-                    Destroy(item.gameObject);
-                    coletados++;
-                    Debug.Log("Item coletado: " + item.name);
-
-                    if (coletados >= 3)
+                    Destroy(item);
+                    SpawnMensagemPainel();
+                    itensColetados++;
+                    if (!personagemSpawnado && itensColetados >= itensNecessarios)
                     {
-                        SpawnNovoPersonagem();
-                        break;
+                        SpawnOutroPersonagem();
+                        personagemSpawnado = true;
                     }
+                    return;
+                }
+
+                // --- Item especial: alterna o painel ---
+                if (item.CompareTag(specialItemTag))
+                {
+                    AlternarPainelEspecial();
+                    return;
                 }
             }
         }
     }
 
-    void SpawnNovoPersonagem()
+    void SpawnMensagemPainel()
     {
-        novoPersonagemSpawnado = true;
-
-        // Usa o ponto de spawn do inspetor; se não existir, cria ao lado do personagem antigo
-        Vector3 spawnPos = spawnPoint != null ? spawnPoint.position : (transform.position + Vector3.right * 2f);
-        GameObject novo = Instantiate(novoPersonagemPrefab, spawnPos, Quaternion.identity);
-
-        // Desativa qualquer movimento do personagem antigo
-
-        // 1. Desativa o script de movimentação Padre Moviment
-        MonoBehaviour padreMov = GetComponent("Padre Moviment") as MonoBehaviour;
-        if (padreMov != null)
-            padreMov.enabled = false;
-
-        // 2. Set Rigidbody2D para Static e zera velocidades
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        if (rb != null)
+        if (mensagemPainelPrefab != null && mensagemTextPrefab != null)
         {
-            rb.linearVelocity = Vector2.zero;
-            rb.angularVelocity = 0f;
-            rb.bodyType = RigidbodyType2D.Static;
+            GameObject painel = Instantiate(mensagemPainelPrefab);
+            TextMeshProUGUI texto = Instantiate(mensagemTextPrefab, painel.transform);
+            texto.text = "Item coletado!";
         }
+    }
 
-        // 3. Reseta a rotação deste objeto para zero
-        transform.rotation = Quaternion.identity;
-
-        // 4. Se a câmera for filha do personagem antigo, desparenta
-        if (Camera.main != null && Camera.main.transform.parent == this.transform)
-            Camera.main.transform.parent = null;
-
-        // 5. Desabilita todos os outros scripts possíveis exceto este
-        foreach (MonoBehaviour script in GetComponents<MonoBehaviour>())
+    void AlternarPainelEspecial()
+    {
+        if (painelEspecial != null)
         {
-            if (script != this && script != padreMov)
-                script.enabled = false;
+            painelEspecial.SetActive(!painelEspecial.activeSelf);
         }
+        else
+        {
+            Debug.LogWarning("Painel Especial não está atribuído no inspetor!");
+        }
+    }
 
-        // 6. Este script também se desativa
-        this.enabled = false;
+    void SpawnOutroPersonagem()
+    {
+        if (outroPersonagemPrefab != null)
+        {
+            Vector3 pos = transform.position + Vector3.right * 2f;
+            if (spawnPointNovoPersonagem != null)
+            {
+                pos = spawnPointNovoPersonagem.position;
+            }
 
-        // --- Se precisar transferir controle/câmera, faça aqui. Exemplo:
-        // Camera.main.GetComponent<CameraFollow>().target = novo.transform;
-        // novo.GetComponent<NOVOSCRIPT_DE_MOVIMENTO>().enabled = true;
+            Instantiate(outroPersonagemPrefab, pos, Quaternion.identity);
+
+            // Desabilita o movimento do personagem antigo
+            var movimento = GetComponent<PadreMoviment>();
+            if (movimento != null)
+                movimento.enabled = false;
+
+            // Zera imediatamente a velocidade física do personagem antigo
+            var rb = GetComponent<Rigidbody2D>();
+            if (rb != null)
+                rb.linearVelocity = Vector2.zero;
+        }
     }
 }
