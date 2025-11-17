@@ -16,7 +16,7 @@ public class SomMovimentacao : MonoBehaviour
     public float intervaloRight = 0.7f;
     public float intervaloSpace = 0.3f;
 
-    public float intervaloBloqueio = 1f; // <--- tempo que o SPACE bloqueia os outros sons
+    public float intervaloBloqueio = 1f;
 
     private float ultimoA = 0f;
     private float ultimoD = 0f;
@@ -26,63 +26,79 @@ public class SomMovimentacao : MonoBehaviour
 
     private float bloqueioPassos = 0f;
 
+    private KeyCode teclaAtiva = KeyCode.None;
+
     void Update()
     {
-        // ----- SOM DO SPACE -----
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time - ultimoSpace >= intervaloSpace)
+        // Libera tecla ativa quando soltar
+        if (teclaAtiva != KeyCode.None && Input.GetKeyUp(teclaAtiva))
+        {
+            teclaAtiva = KeyCode.None;
+        }
+
+        // --- SOM DO SPACE ou W (instantâneos, não viram tecla ativa) ---
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
+            && Time.time - ultimoSpace >= intervaloSpace)
         {
             audioSource.PlayOneShot(SoundSpace);
             ultimoSpace = Time.time;
 
-            // aplica o bloqueio com valor configurado no inspector
             bloqueioPassos = intervaloBloqueio;
+
+            // IMPORTANTE: LIBERA QUALQUER TECLA ATIVA
+            teclaAtiva = KeyCode.None;
+
+            return; // finaliza, deixa o bloqueio agir
         }
 
-        // diminui o tempo do bloqueio
+        // Se está bloqueado, não toca nada
         if (bloqueioPassos > 0f)
         {
             bloqueioPassos -= Time.deltaTime;
-            return; // impede qualquer som de movimento
+            return;
         }
 
-        // --- SOM A ---
-        if (Input.GetKey(KeyCode.A))
+        // Se há uma tecla ativa, só ela toca
+        if (teclaAtiva != KeyCode.None)
         {
-            if (Time.time - ultimoA >= intervaloA)
-            {
-                audioSource.PlayOneShot(SoundA);
-                ultimoA = Time.time;
-            }
+            TocarSom(teclaAtiva);
+            return;
         }
 
-        // --- SOM D ---
-        if (Input.GetKey(KeyCode.D))
-        {
-            if (Time.time - ultimoD >= intervaloD)
-            {
-                audioSource.PlayOneShot(SoundD);
-                ultimoD = Time.time;
-            }
-        }
+        // Seleção da nova tecla ativa
+        if (Input.GetKey(KeyCode.A)) teclaAtiva = KeyCode.A;
+        else if (Input.GetKey(KeyCode.D)) teclaAtiva = KeyCode.D;
+        else if (Input.GetKey(KeyCode.LeftArrow)) teclaAtiva = KeyCode.LeftArrow;
+        else if (Input.GetKey(KeyCode.RightArrow)) teclaAtiva = KeyCode.RightArrow;
 
-        // --- SOM LEFT ---
-        if (Input.GetKey(KeyCode.LeftArrow))
+        // toca a nova tecla ativa
+        if (teclaAtiva != KeyCode.None)
         {
-            if (Time.time - ultimoLeft >= intervaloLeft)
-            {
-                audioSource.PlayOneShot(SoundLeft);
-                ultimoLeft = Time.time;
-            }
+            TocarSom(teclaAtiva);
         }
+    }
 
-        // --- SOM RIGHT ---
-        if (Input.GetKey(KeyCode.RightArrow))
+    void TocarSom(KeyCode key)
+    {
+        if (key == KeyCode.A && Time.time - ultimoA >= intervaloA)
         {
-            if (Time.time - ultimoRight >= intervaloRight)
-            {
-                audioSource.PlayOneShot(SoundRight);
-                ultimoRight = Time.time;
-            }
+            audioSource.PlayOneShot(SoundA);
+            ultimoA = Time.time;
+        }
+        else if (key == KeyCode.D && Time.time - ultimoD >= intervaloD)
+        {
+            audioSource.PlayOneShot(SoundD);
+            ultimoD = Time.time;
+        }
+        else if (key == KeyCode.LeftArrow && Time.time - ultimoLeft >= intervaloLeft)
+        {
+            audioSource.PlayOneShot(SoundLeft);
+            ultimoLeft = Time.time;
+        }
+        else if (key == KeyCode.RightArrow && Time.time - ultimoRight >= intervaloRight)
+        {
+            audioSource.PlayOneShot(SoundRight);
+            ultimoRight = Time.time;
         }
     }
 }
