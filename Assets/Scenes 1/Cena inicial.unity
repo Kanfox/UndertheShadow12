@@ -10253,8 +10253,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: -336629187
-  m_SortingLayer: 3
+  m_SortingLayerID: -1003017801
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 1761995485209652213, guid: ceb9e6ce697855440bdba1a4d93f0a17, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -19314,6 +19314,11 @@ MonoBehaviour:
   portalPrefab: {fileID: 935319896}
   portalSpawnPoint: {fileID: 1738055121}
   sceneDestino: Cena cidade
+  delayAfterCloneFound: 0
+  playerTag: Player
+  requireNameContainsClone: 1
+  pollFrequency: 0.15
+  maxWaitTime: 0
 --- !u!1 &1772403852
 GameObject:
   m_ObjectHideFlags: 0
