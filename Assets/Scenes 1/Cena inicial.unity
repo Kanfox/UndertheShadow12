@@ -8775,7 +8775,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "2. n\xE3o deixe nenhum militar escapar, mate todos, como um verdadeiro
+  m_text: "2. n\xE3o deixe nenhum militar escapar, derrote todos, como um verdadeiro
     justi\xE7eiro."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4b775fd2e279fd04a962470b83154b52, type: 2}
@@ -12002,7 +12002,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1042132684
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20416,7 +20416,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "1. Salve todos os vicis que voc\xEA puder da injusti\xE7a e cruel ditadura
+  m_text: "1. Salve todos os civis que voc\xEA puder da injusti\xE7a e cruel ditadura
     militar."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4b775fd2e279fd04a962470b83154b52, type: 2}
@@ -22634,7 +22634,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3.  Entre no portal para salvar os inoscentes.
+  m_text: 3.  Entre no portal para salvar os inocentes.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4b775fd2e279fd04a962470b83154b52, type: 2}
   m_sharedMaterial: {fileID: -7489765113027175155, guid: 4b775fd2e279fd04a962470b83154b52, type: 2}

@@ -20,7 +20,8 @@ public class EnemyAttack : MonoBehaviour
 
     void Update()
     {
-        float distance = Vector3.Distance(player.position, transform.position);
+        float v = Vector3.Distance(player.position, transform.position);
+        float distance = v;
 
         // Se jogador está no alcance, não está atacando, e cooldown acabou
         if (distance <= attackRange && !isAttacking && Time.time >= lastAttackTime + attackCooldown)
