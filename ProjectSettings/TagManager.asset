@@ -16,6 +16,7 @@ TagManager:
   - item3
   - SpecialItem
   - ItemEspecial
+  - "NPC no ch\xE3o"
   layers:
   - Default
   - TransparentFX

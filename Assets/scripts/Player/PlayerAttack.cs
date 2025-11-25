@@ -30,6 +30,7 @@ public class PlayerAttack : MonoBehaviour
     // Se você quiser mudar os nomes das triggers, altere aqui no código.
     const string weakAttackTrigger = "WeakAttack";
     const string mediumAttackTrigger = "MediumAttack";
+    
 
     // Animator será obtido automaticamente (GetComponent). Não precisa arrastar no Inspector.
     Animator animator;
@@ -67,6 +68,7 @@ public class PlayerAttack : MonoBehaviour
         {
             StartCoroutine(PerformAttack(mediumAttackTrigger, mediumAttackDamage));
         }
+        
     }
 
     IEnumerator PerformAttack(string triggerName, int damage)
