@@ -12,7 +12,7 @@ public class EnemyAttack : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip attackSound;
     [Tooltip("Intervalo mínimo em segundos entre reproduções do som")]
-    public float soundInterval = 0.5f; // Agora configurável no Inspector
+    public float soundInterval = 0.5f;
 
     private bool isAttacking = false;
     private float lastAttackTime = 0f;
@@ -20,8 +20,7 @@ public class EnemyAttack : MonoBehaviour
 
     void Update()
     {
-        float v = Vector3.Distance(player.position, transform.position);
-        float distance = v;
+        float distance = Vector3.Distance(player.position, transform.position);
 
         // Se jogador está no alcance, não está atacando, e cooldown acabou
         if (distance <= attackRange && !isAttacking && Time.time >= lastAttackTime + attackCooldown)
@@ -44,6 +43,20 @@ public class EnemyAttack : MonoBehaviour
             audioSource.PlayOneShot(attackSound);
             lastSoundTime = Time.time;
         }
+
+        // ======= Detecção de defesa do player =======
+        PlayerDefend playerDefend = player.GetComponent<PlayerDefend>();
+        if (playerDefend != null && playerDefend.IsDefending())
+        {
+            Debug.Log("O player defendeu o ataque!");
+            // Efeitos/sons de defesa aqui se quiser
+        }
+        else
+        {
+            Debug.Log("O player tomou dano!");
+            // Coloque seu código de dano aqui!
+        }
+        // ============================================
 
         // Espera até o fim da animação para permitir novo ataque
         float attackDuration = animator.GetCurrentAnimatorStateInfo(0).length;

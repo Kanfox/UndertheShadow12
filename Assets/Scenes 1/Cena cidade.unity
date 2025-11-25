@@ -2320,7 +2320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 333e42545ed8f6545af03422637b6467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pause
-  pauseMenu: {fileID: 2012071887}
+  pauseMenu: {fileID: 0}
 --- !u!114 &294618179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2333,8 +2333,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa72ef62cce2c6b48aab1337d774776b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MuteButton
-  botaoMute: {fileID: 2059710778}
-  imagemDoBotao: {fileID: 2059710779}
+  botaoMute: {fileID: 0}
+  imagemDoBotao: {fileID: 0}
   imagemSomLigado: {fileID: 21300000, guid: 37a2fcc3b0ee8ce46adff29c986b2961, type: 3}
   imagemSomDesligado: {fileID: 21300000, guid: 0b4557e8650efc04483ec9e608d553ef, type: 3}
 --- !u!1 &309202273
@@ -2371,7 +2371,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 54.000004, y: 86.99997}
+  m_AnchoredPosition: {x: 54.000004, y: 144}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &309202275
@@ -5798,7 +5798,7 @@ RectTransform:
   m_GameObject: {fileID: 913664270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 2, z: 1}
+  m_LocalScale: {x: 4, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 906134337}
@@ -5806,7 +5806,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000038146973, y: -90}
+  m_AnchoredPosition: {x: -0.0000038146973, y: -97}
   m_SizeDelta: {x: 197.27, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &913664272
@@ -7218,8 +7218,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2, y: 3}
-  m_SizeDelta: {x: -300.99994, y: -224.73773}
+  m_AnchoredPosition: {x: 2.2299805, y: 27}
+  m_SizeDelta: {x: -100.02, y: -510}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1248004536
 MonoBehaviour:
@@ -10618,7 +10618,7 @@ RectTransform:
   m_GameObject: {fileID: 1750703998}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 2, z: 1}
+  m_LocalScale: {x: 4, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 704852415}
@@ -12861,6 +12861,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   drawGizmos: 1
+--- !u!95 &6138129947477680595 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2921845368450466926, guid: 831d284cf97de3d4d93e570bf1f11705, type: 3}
+  m_PrefabInstance: {fileID: 8502106514202883689}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6138129947477680597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12880,6 +12885,20 @@ MonoBehaviour:
   textoColetaUI: {fileID: 1003075428}
   mensagemColeta: Voce salvou um civil!
   tempoVisivel: 2
+--- !u!114 &6138129947477680598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897083099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1d51406a90576848ac06695488ce082, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDefend
+  animator: {fileID: 6138129947477680595}
+  quickDefendDuration: 1
 --- !u!1001 &8502106514202883689
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12969,6 +12988,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5068193722454694345, guid: 831d284cf97de3d4d93e570bf1f11705, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6138129947477680597}
+    - targetCorrespondingSourceObject: {fileID: 5068193722454694345, guid: 831d284cf97de3d4d93e570bf1f11705, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6138129947477680598}
   m_SourcePrefab: {fileID: 100100000, guid: 831d284cf97de3d4d93e570bf1f11705, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
