@@ -26,6 +26,15 @@ public class PlayerHealth : MonoBehaviour
     {
         if (isDead) return;
 
+        // VERIFICA A DEFESA DO PLAYER ANTES DE CAUSAR DANO!
+        PlayerDefend playerDefend = GetComponent<PlayerDefend>();
+        if (playerDefend != null && playerDefend.IsDefending())
+        {
+            Debug.Log("Defendeu! Não levou dano.");
+            return; // Sai da função sem tomar dano
+        }
+
+        // CÓDIGO ORIGINAL (não modificado)
         currentHealth -= damage;
         Debug.Log("Player tomou dano! Vida restante: " + currentHealth);
 
