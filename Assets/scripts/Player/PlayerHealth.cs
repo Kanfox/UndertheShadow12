@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement; // Para reiniciar cenas
 using System.Collections; // Necessário para usar IEnumerator
+using TMPro; // Para TextMeshProUGUI
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class PlayerHealth : MonoBehaviour
     [Header("Painel de Game Over")]
     public GameObject gameOverPanel; // Painel a ser ativado
 
+    [Header("UI")]
+    public TextMeshProUGUI healthText; // Texto na tela que exibirá a vida do player (arraste no Inspector)
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -20,6 +24,8 @@ public class PlayerHealth : MonoBehaviour
 
         if (gameOverPanel != null)
             gameOverPanel.SetActive(false); // Garante que o painel esteja escondido no começo
+
+        UpdateHealthText();
     }
 
     public void TakeDamage(int damage)
@@ -36,11 +42,39 @@ public class PlayerHealth : MonoBehaviour
 
         // CÓDIGO ORIGINAL (não modificado)
         currentHealth -= damage;
+        if (currentHealth < 0) currentHealth = 0;
+
         Debug.Log("Player tomou dano! Vida restante: " + currentHealth);
+
+        UpdateHealthText();
 
         if (currentHealth <= 0)
         {
             Die();
+        }
+    }
+
+    // Método público para alterar vida (por exemplo cura)
+    public void ChangeHealth(int amount)
+    {
+        if (isDead) return;
+
+        currentHealth += amount;
+        if (currentHealth > maxHealth) currentHealth = maxHealth;
+        if (currentHealth < 0) currentHealth = 0;
+
+        UpdateHealthText();
+
+        if (currentHealth <= 0)
+            Die();
+    }
+
+    // Atualiza o texto na UI (seguro para null)
+    private void UpdateHealthText()
+    {
+        if (healthText != null)
+        {
+            healthText.text = $"HP: {currentHealth} / {maxHealth}";
         }
     }
 
@@ -51,7 +85,8 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player morreu!");
 
         // Ativa a animação de morte
-        animator.SetBool("isDead", true);
+        if (animator != null)
+            animator.SetBool("isDead", true);
 
         // Desativa o controle do jogador
         PlayerController movementScript = GetComponent<PlayerController>();
@@ -59,6 +94,10 @@ public class PlayerHealth : MonoBehaviour
         {
             movementScript.enabled = false;
         }
+
+        // Garante que o texto mostre 0 ao morrer
+        currentHealth = 0;
+        UpdateHealthText();
 
         // Inicia corrotina para mostrar o painel com delay
         StartCoroutine(ShowGameOverPanelWithDelay(1.5f)); // Delay de 1.5 segundos (ajustável)
