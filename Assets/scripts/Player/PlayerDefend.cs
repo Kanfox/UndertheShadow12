@@ -66,6 +66,10 @@ public class PlayerDefend : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.F))
         {
             isDefending = false;
+
+            // --------------- ACRÉSCIMO: Força saída da defesa imediatamente ---------------
+            ForceExitDefendAnimationOnKeyUp();
+            // ---------------------------------------------------------------------------
         }
 
         if (Input.GetKeyDown(KeyCode.F))
@@ -209,4 +213,25 @@ public class PlayerDefend : MonoBehaviour
     {
         return isDefending;
     }
+
+    // --------------- ACRÉSCIMO: Força o Animator a sair do estado de defesa imediatamente ---------------
+    private void ForceExitDefendAnimationOnKeyUp()
+    {
+        if (animator != null && !string.IsNullOrEmpty(defendAnimatorBoolName))
+        {
+            animator.SetBool(defendAnimatorBoolName, false); // reforço extra
+
+            // Troque "Idle" pelo nome do state de espera/parado do seu Animator!
+            string idleStateName = "Idle";
+            int hash = Animator.StringToHash(idleStateName);
+
+            if (animator.HasState(defendLayerIndex, hash))
+            {
+                animator.Play(hash, defendLayerIndex, 0f);
+                animator.Update(0f);
+                if (debugLogs) Debug.Log("[PlayerDefend EXTRA] Forçado saída para '" + idleStateName + "' ao soltar F.");
+            }
+        }
+    }
+    // ----------------------------------------------------------------------------------------------
 }
