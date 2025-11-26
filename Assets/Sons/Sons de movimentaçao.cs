@@ -9,12 +9,20 @@ public class SomMovimentacao : MonoBehaviour
     public AudioClip SoundLeft;
     public AudioClip SoundRight;
     public AudioClip SoundSpace;
+    public AudioClip SoundF;
+
+    public AudioClip SoundM1;
+    public AudioClip SoundM2;
 
     public float intervaloA = 0.7f;
     public float intervaloD = 0.7f;
     public float intervaloLeft = 0.7f;
     public float intervaloRight = 0.7f;
     public float intervaloSpace = 0.3f;
+    public float intervaloF = 0.4f;
+
+    public float intervaloM1 = 0.2f;
+    public float intervaloM2 = 0.2f;
 
     public float intervaloBloqueio = 1f;
 
@@ -23,6 +31,13 @@ public class SomMovimentacao : MonoBehaviour
     private float ultimoLeft = 0f;
     private float ultimoRight = 0f;
     private float ultimoSpace = 0f;
+    private float ultimoF = 0f;
+
+    private float ultimoM1 = 0f;
+    private float ultimoM2 = 0f;
+
+    private float cooldownM1 = 0f; // <-- NOVO
+    private float cooldownM2 = 0f; // <-- NOVO
 
     private float bloqueioPassos = 0f;
 
@@ -30,13 +45,57 @@ public class SomMovimentacao : MonoBehaviour
 
     void Update()
     {
+        // Atualiza cooldown cruzado
+        if (cooldownM1 > 0f) cooldownM1 -= Time.deltaTime;
+        if (cooldownM2 > 0f) cooldownM2 -= Time.deltaTime;
+
         // Libera tecla ativa quando soltar
         if (teclaAtiva != KeyCode.None && Input.GetKeyUp(teclaAtiva))
-        {
             teclaAtiva = KeyCode.None;
+
+        // -------- F (bloqueia tudo) ----------
+        if (Input.GetKey(KeyCode.F))
+        {
+            teclaAtiva = KeyCode.F;
+
+            if (Time.time - ultimoF >= intervaloF)
+            {
+                audioSource.PlayOneShot(SoundF);
+                ultimoF = Time.time;
+            }
+
+            return;
         }
 
-        // --- SOM DO SPACE ou W (instantâneos, não viram tecla ativa) ---
+        // ---------- M1 (só toca se NÃO estiver no cooldown do M2) ----------
+        if (Input.GetKeyDown(KeyCode.Mouse0)
+            && cooldownM2 <= 0f // M2 não pode ter sido clicado recentemente
+            && Time.time - ultimoM1 >= intervaloM1)
+        {
+            audioSource.PlayOneShot(SoundM1);
+            ultimoM1 = Time.time;
+
+            cooldownM1 = intervaloM1; // cooldown M1 normal
+            cooldownM2 = intervaloM1; // <-- bloqueia M2
+
+            return;
+        }
+
+        // ---------- M2 (só toca se NÃO estiver no cooldown do M1) ----------
+        if (Input.GetKeyDown(KeyCode.Mouse1)
+            && cooldownM1 <= 0f // M1 não pode ter sido clicado recentemente
+            && Time.time - ultimoM2 >= intervaloM2)
+        {
+            audioSource.PlayOneShot(SoundM2);
+            ultimoM2 = Time.time;
+
+            cooldownM2 = intervaloM2; // cooldown M2 normal
+            cooldownM1 = intervaloM2; // <-- bloqueia M1
+
+            return;
+        }
+
+        // ---------- SPACE / W ----------
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
             && Time.time - ultimoSpace >= intervaloSpace)
         {
@@ -44,38 +103,32 @@ public class SomMovimentacao : MonoBehaviour
             ultimoSpace = Time.time;
 
             bloqueioPassos = intervaloBloqueio;
-
-            // IMPORTANTE: LIBERA QUALQUER TECLA ATIVA
             teclaAtiva = KeyCode.None;
 
-            return; // finaliza, deixa o bloqueio agir
+            return;
         }
 
-        // Se está bloqueado, não toca nada
+        // Bloqueio pós espaço
         if (bloqueioPassos > 0f)
         {
             bloqueioPassos -= Time.deltaTime;
             return;
         }
 
-        // Se há uma tecla ativa, só ela toca
+        // -------- PASSOS --------
         if (teclaAtiva != KeyCode.None)
         {
             TocarSom(teclaAtiva);
             return;
         }
 
-        // Seleção da nova tecla ativa
         if (Input.GetKey(KeyCode.A)) teclaAtiva = KeyCode.A;
         else if (Input.GetKey(KeyCode.D)) teclaAtiva = KeyCode.D;
         else if (Input.GetKey(KeyCode.LeftArrow)) teclaAtiva = KeyCode.LeftArrow;
         else if (Input.GetKey(KeyCode.RightArrow)) teclaAtiva = KeyCode.RightArrow;
 
-        // toca a nova tecla ativa
         if (teclaAtiva != KeyCode.None)
-        {
             TocarSom(teclaAtiva);
-        }
     }
 
     void TocarSom(KeyCode key)
