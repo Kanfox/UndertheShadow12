@@ -12898,7 +12898,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDefend
   animator: {fileID: 6138129947477680595}
+  defendAnimatorBoolName: Defending
+  defendStateName: defendendo
+  defendLayerIndex: 0
+  crossfadeDuration: 0
   quickDefendDuration: 1
+  attackComponentClassName: PlayerAttack
+  controllerComponentClassName: PlayerController
+  rb2d: {fileID: 0}
+  rb3d: {fileID: 0}
+  movementFloatParams: []
+  movementBoolParams: []
+  movementIntParams: []
+  debugLogs: 0
 --- !u!1001 &8502106514202883689
 PrefabInstance:
   m_ObjectHideFlags: 0

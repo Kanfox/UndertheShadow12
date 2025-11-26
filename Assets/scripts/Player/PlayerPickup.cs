@@ -23,6 +23,15 @@ public class PlayerPickup : MonoBehaviour
     private int itensColetados = 0;
     public int itensNecessarios = 3;
 
+    // NOVO: Texto que aparece quando estiver na área de pegar o item
+    public TextMeshProUGUI pickupPrompt;
+
+    private void Start()
+    {
+        if (pickupPrompt != null)
+            pickupPrompt.gameObject.SetActive(false);
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
@@ -31,8 +40,33 @@ public class PlayerPickup : MonoBehaviour
 
     void Update()
     {
+        // Mostrar/ocultar o prompt dependendo se há um item na área
+        if (pickupPrompt != null)
+        {
+            Collider2D nearby = Physics2D.OverlapCircle(transform.position, pickupRadius, itemLayer);
+            bool showPrompt = false;
+            if (nearby != null)
+            {
+                if (nearby.CompareTag(itemTag) || nearby.CompareTag(specialItemTag))
+                    showPrompt = true;
+            }
+
+            // Se o painel especial estiver aberto, não mostrar o prompt
+            if (painelEspecial != null && painelEspecial.activeSelf)
+                showPrompt = false;
+
+            pickupPrompt.gameObject.SetActive(showPrompt);
+        }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
+            // Se o painel especial já estiver aberto, permitir fechar independentemente da distância
+            if (painelEspecial != null && painelEspecial.activeSelf)
+            {
+                AlternarPainelEspecial();
+                return;
+            }
+
             RaycastHit2D hit = Physics2D.CircleCast(transform.position, pickupRadius, Vector2.zero, 0f, itemLayer);
             if (hit.collider != null)
             {
@@ -42,6 +76,11 @@ public class PlayerPickup : MonoBehaviour
                 if (item.CompareTag(itemTag))
                 {
                     Destroy(item);
+
+                    // esconder o prompt ao coletar o item
+                    if (pickupPrompt != null)
+                        pickupPrompt.gameObject.SetActive(false);
+
                     SpawnMensagemPainel();
                     itensColetados++;
                     if (!personagemSpawnado && itensColetados >= itensNecessarios)
@@ -77,6 +116,22 @@ public class PlayerPickup : MonoBehaviour
         if (painelEspecial != null)
         {
             painelEspecial.SetActive(!painelEspecial.activeSelf);
+
+            // Se o painel foi ativado, garantir que o prompt de pegar seja desativado imediatamente
+            if (painelEspecial.activeSelf && pickupPrompt != null)
+                pickupPrompt.gameObject.SetActive(false);
+
+            // Se o painel foi desativado, reaparecer o prompt apenas para o item especial
+            // (aparecerá aqui apenas se o jogador estiver dentro da área do item especial;
+            // ao sair da área, o Update() continuará a esconder o prompt normalmente)
+            if (!painelEspecial.activeSelf && pickupPrompt != null)
+            {
+                Collider2D nearby = Physics2D.OverlapCircle(transform.position, pickupRadius, itemLayer);
+                if (nearby != null && nearby.CompareTag(specialItemTag))
+                {
+                    pickupPrompt.gameObject.SetActive(true);
+                }
+            }
         }
         else
         {
