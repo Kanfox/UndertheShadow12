@@ -1513,13 +1513,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 228320690}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0.010271142, z: -0, w: 0.9999473}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -1.177, z: 0}
 --- !u!114 &228320694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1538,11 +1538,17 @@ MonoBehaviour:
   SoundLeft: {fileID: 8300000, guid: 1f0199a4c6005ec4abbb302f71bc036d, type: 3}
   SoundRight: {fileID: 8300000, guid: 1f0199a4c6005ec4abbb302f71bc036d, type: 3}
   SoundSpace: {fileID: 8300000, guid: f31b24db81a82ec4aa6bcf5d0acd30ac, type: 3}
+  SoundF: {fileID: 0}
+  SoundM1: {fileID: 8300000, guid: e98651b463ec02f4c867571958d67528, type: 3}
+  SoundM2: {fileID: 8300000, guid: e98651b463ec02f4c867571958d67528, type: 3}
   intervaloA: 0.5
   intervaloD: 0.5
   intervaloLeft: 0.5
   intervaloRight: 0.5
   intervaloSpace: 0.7
+  intervaloF: 0.4
+  intervaloM1: 1
+  intervaloM2: 1
   intervaloBloqueio: 0.7
 --- !u!1 &232363269
 GameObject:
@@ -10391,14 +10397,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1676662826}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7825b9eaf387b16438cf4835803cd747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseClickSound
   audioSource: {fileID: 1676662828}
-  soundM1: {fileID: 8300000, guid: e98651b463ec02f4c867571958d67528, type: 3}
-  soundM2: {fileID: 8300000, guid: e98651b463ec02f4c867571958d67528, type: 3}
+  soundM1: {fileID: 0}
+  soundM2: {fileID: 0}
   soundA: {fileID: 0}
   soundD: {fileID: 0}
   soundLeft: {fileID: 0}
