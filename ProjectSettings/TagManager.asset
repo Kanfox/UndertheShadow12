@@ -21,6 +21,7 @@ TagManager:
   - 1
   - 2
   - 3
+  - Special
   layers:
   - Default
   - TransparentFX
