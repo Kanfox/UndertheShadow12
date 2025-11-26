@@ -12,6 +12,10 @@ public class NPCHealth : MonoBehaviour
     public string hitTrigger = "Hit";
     public string deathTrigger = "Die";
 
+    [Header("Som ao morrer")]
+    public AudioSource audioSource;
+    public AudioClip deathSound;
+
     [Header("Comportamento ao morrer")]
     public MonoBehaviour[] disableOnDeath;
     public bool disableRigidbodyOnDeath = true;
@@ -26,16 +30,14 @@ public class NPCHealth : MonoBehaviour
     public bool lockYInLateUpdate = true;
     [Tooltip("Se preferir instanciar um prefab de 'cadáver' (não afunda), marque true e atribua o prefab.")]
     public bool useDeathPrefab = false;
-    public GameObject deathPrefab; // prefab que contém a animação de morte sem curvas de posição (opcional)
-    [Tooltip("Se usar deathPrefab, se true o objeto original será destruído imediatamente; se false será desativado e deathPrefab ficará no lugar.")]
+    public GameObject deathPrefab;
+    [Tooltip("Se usar deathPrefab, se true o objeto original será destruído imediatamente; se false será desativado.")]
     public bool destroyOriginalWhenSpawnPrefab = true;
 
-    // estado interno
     Rigidbody2D rb;
     Collider2D mainCollider;
     bool isDead = false;
 
-    // valor Y a ser mantido
     float deathFixedY;
 
     void Awake()
@@ -47,7 +49,6 @@ public class NPCHealth : MonoBehaviour
         if (animator == null)
             animator = GetComponent<Animator>();
 
-        // evita root motion e força modo Normal (assim garantimos que LateUpdate sobreporá)
         if (animator != null)
         {
             animator.applyRootMotion = false;
@@ -68,7 +69,6 @@ public class NPCHealth : MonoBehaviour
         {
             currentHealth = 0;
 
-            // desativa collider imediatamente
             if (disableColliderOnDeath && mainCollider != null)
                 mainCollider.enabled = false;
 
@@ -78,7 +78,6 @@ public class NPCHealth : MonoBehaviour
                     if (c != null) c.enabled = false;
             }
 
-            // entra na rotina de morte
             Die();
         }
     }
@@ -88,29 +87,27 @@ public class NPCHealth : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
-        // registra Y atual para manter a posição do chão
+        // 🔊 SOM DE MORTE
+        if (audioSource != null && deathSound != null)
+            audioSource.PlayOneShot(deathSound);
+
         deathFixedY = transform.position.y;
 
-        // se optar por spawnar um prefab de cadáver, instancie e finalize aqui
         if (useDeathPrefab && deathPrefab != null)
         {
-            // instanciar no mesmo local (mantém a aparência, mas o prefab deve ter animação sem posição)
             Instantiate(deathPrefab, transform.position, transform.rotation);
 
-            // desativa/destrói o original de acordo com a configuração
             if (destroyOriginalWhenSpawnPrefab)
                 Destroy(gameObject);
             else
                 gameObject.SetActive(false);
 
-            return; // nada mais para fazer no objeto original
+            return;
         }
 
-        // toca animação de morte no Animator do próprio objeto (se existir)
         if (animator != null && !string.IsNullOrEmpty(deathTrigger))
             animator.SetTrigger(deathTrigger);
 
-        // para física
         if (rb != null)
         {
             rb.linearVelocity = Vector2.zero;
@@ -119,26 +116,21 @@ public class NPCHealth : MonoBehaviour
                 rb.simulated = false;
         }
 
-        // desativa scripts listados
         if (disableOnDeath != null)
         {
             foreach (var comp in disableOnDeath)
                 if (comp != null) comp.enabled = false;
         }
 
-        // desativa especificamente por nome (EnemyBehavior) sem precisar do tipo
         DisableComponentByName("EnemyBehavior");
 
-        // envia mensagens para garantir que outros scripts parem
         BroadcastMessage("DisableAttack", SendMessageOptions.DontRequireReceiver);
         BroadcastMessage("StopChasing", SendMessageOptions.DontRequireReceiver);
         BroadcastMessage("OnDeath", SendMessageOptions.DontRequireReceiver);
 
-        // inicia a destruição após delay
         StartCoroutine(DestroyAfterDelayCoroutine());
     }
 
-    // trava Y depois que a animação foi aplicada (LateUpdate sobrepõe a animação)
     void LateUpdate()
     {
         if (isDead && lockYInLateUpdate)
@@ -153,11 +145,9 @@ public class NPCHealth : MonoBehaviour
     {
         if (string.IsNullOrEmpty(name)) return;
 
-        // self
         Component c = GetComponent(name);
         if (c is Behaviour b0) b0.enabled = false;
 
-        // children
         var childComps = GetComponentsInChildren<Component>(true);
         foreach (var comp in childComps)
         {
@@ -165,7 +155,6 @@ public class NPCHealth : MonoBehaviour
             if (comp.GetType().Name == name && comp is Behaviour bb) bb.enabled = false;
         }
 
-        // parents
         var parentComps = GetComponentsInParent<Component>(true);
         foreach (var comp in parentComps)
         {
