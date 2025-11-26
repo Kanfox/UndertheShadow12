@@ -36,15 +36,21 @@ public class SomMovimentacao : MonoBehaviour
     private float ultimoM1 = 0f;
     private float ultimoM2 = 0f;
 
-    private float cooldownM1 = 0f; // <-- NOVO
-    private float cooldownM2 = 0f; // <-- NOVO
+    private float cooldownM1 = 0f;
+    private float cooldownM2 = 0f;
 
     private float bloqueioPassos = 0f;
 
     private KeyCode teclaAtiva = KeyCode.None;
 
+    // 🔴 NOVO: trava todos os sons quando o player morre
+    public bool playerMorto = false;
+
     void Update()
     {
+        // 🔒 BLOQUEIA TODOS OS SONS SE O PLAYER MORREU
+        if (playerMorto) return;
+
         // Atualiza cooldown cruzado
         if (cooldownM1 > 0f) cooldownM1 -= Time.deltaTime;
         if (cooldownM2 > 0f) cooldownM2 -= Time.deltaTime;
@@ -67,30 +73,30 @@ public class SomMovimentacao : MonoBehaviour
             return;
         }
 
-        // ---------- M1 (só toca se NÃO estiver no cooldown do M2) ----------
+        // ---------- M1 ----------
         if (Input.GetKeyDown(KeyCode.Mouse0)
-            && cooldownM2 <= 0f // M2 não pode ter sido clicado recentemente
+            && cooldownM2 <= 0f
             && Time.time - ultimoM1 >= intervaloM1)
         {
             audioSource.PlayOneShot(SoundM1);
             ultimoM1 = Time.time;
 
-            cooldownM1 = intervaloM1; // cooldown M1 normal
-            cooldownM2 = intervaloM1; // <-- bloqueia M2
+            cooldownM1 = intervaloM1;
+            cooldownM2 = intervaloM1;
 
             return;
         }
 
-        // ---------- M2 (só toca se NÃO estiver no cooldown do M1) ----------
+        // ---------- M2 ----------
         if (Input.GetKeyDown(KeyCode.Mouse1)
-            && cooldownM1 <= 0f // M1 não pode ter sido clicado recentemente
+            && cooldownM1 <= 0f
             && Time.time - ultimoM2 >= intervaloM2)
         {
             audioSource.PlayOneShot(SoundM2);
             ultimoM2 = Time.time;
 
-            cooldownM2 = intervaloM2; // cooldown M2 normal
-            cooldownM1 = intervaloM2; // <-- bloqueia M1
+            cooldownM2 = intervaloM2;
+            cooldownM1 = intervaloM2;
 
             return;
         }

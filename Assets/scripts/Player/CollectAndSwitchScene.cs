@@ -3,12 +3,17 @@ using UnityEngine.SceneManagement;
 
 public class CollectAndSwitchScene : MonoBehaviour
 {
-    public float rangeHorizontal = 2f;       // Alcance horizontal do gizmo e detecção
-    public float rangeVertical = 1f;         // Alcance vertical do gizmo e detecção
-    public string collectibleTag = "Collectible"; // Tag do objeto coletável
+    public float rangeHorizontal = 2f;       // Alcance horizontal do gizmo e detecÃ§Ã£o
+    public float rangeVertical = 1f;         // Alcance vertical do gizmo e detecÃ§Ã£o
+    public string collectibleTag = "Collectible"; // Tag do objeto coletÃ¡vel
     public string nextSceneName = "NextScene";    // Nome da cena para trocar
+
     private GameObject collectedObject;
     private bool hasCollected = false;
+
+    [Header("Som ao coletar")]
+    public AudioSource audioSource;
+    public AudioClip collectSound;
 
     void Update()
     {
@@ -34,7 +39,14 @@ public class CollectAndSwitchScene : MonoBehaviour
     void CollectObject()
     {
         hasCollected = true;
+
+        // ðŸ”Š Som ao coletar
+        if (audioSource != null && collectSound != null)
+            audioSource.PlayOneShot(collectSound);
+
         collectedObject.SetActive(false);
+
+        // Espera 3s antes de trocar de cena
         Invoke("SwitchScene", 3f);
     }
 

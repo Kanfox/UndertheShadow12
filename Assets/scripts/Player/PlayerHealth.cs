@@ -1,7 +1,7 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; // Para reiniciar cenas
-using System.Collections; // Necessário para usar IEnumerator
-using TMPro; // Para TextMeshProUGUI
+using UnityEngine.SceneManagement;
+using System.Collections;
+using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -12,10 +12,17 @@ public class PlayerHealth : MonoBehaviour
     public bool isDead = false;
 
     [Header("Painel de Game Over")]
-    public GameObject gameOverPanel; // Painel a ser ativado
+    public GameObject gameOverPanel;
 
     [Header("UI")]
-    public TextMeshProUGUI healthText; // Texto na tela que exibirá a vida do player (arraste no Inspector)
+    public TextMeshProUGUI healthText;
+
+    [Header("Som ao morrer")]
+    public AudioSource audioSource;
+    public AudioClip deathSound;
+
+    [Header("Som pÃ³s-morte (toca depois de 2s)")]
+    public AudioClip afterDeathSound;
 
     void Start()
     {
@@ -23,7 +30,7 @@ public class PlayerHealth : MonoBehaviour
         animator = GetComponent<Animator>();
 
         if (gameOverPanel != null)
-            gameOverPanel.SetActive(false); // Garante que o painel esteja escondido no começo
+            gameOverPanel.SetActive(false);
 
         UpdateHealthText();
     }
@@ -32,15 +39,13 @@ public class PlayerHealth : MonoBehaviour
     {
         if (isDead) return;
 
-        // VERIFICA A DEFESA DO PLAYER ANTES DE CAUSAR DANO!
         PlayerDefend playerDefend = GetComponent<PlayerDefend>();
         if (playerDefend != null && playerDefend.IsDefending())
         {
-            Debug.Log("Defendeu! Não levou dano.");
-            return; // Sai da função sem tomar dano
+            Debug.Log("Defendeu! NÃ£o levou dano.");
+            return;
         }
 
-        // CÓDIGO ORIGINAL (não modificado)
         currentHealth -= damage;
         if (currentHealth < 0) currentHealth = 0;
 
@@ -54,7 +59,6 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    // Método público para alterar vida (por exemplo cura)
     public void ChangeHealth(int amount)
     {
         if (isDead) return;
@@ -69,7 +73,6 @@ public class PlayerHealth : MonoBehaviour
             Die();
     }
 
-    // Atualiza o texto na UI (seguro para null)
     private void UpdateHealthText()
     {
         if (healthText != null)
@@ -80,27 +83,37 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
+        if (isDead) return;
         isDead = true;
 
         Debug.Log("Player morreu!");
 
-        // Ativa a animação de morte
+        // ðŸ”Š SOM DE MORTE IMEDIATO
+        if (audioSource != null && deathSound != null)
+            audioSource.PlayOneShot(deathSound);
+
+        // ðŸ”Š SOM 2 SEGUNDOS APÃ“S A MORTE
+        StartCoroutine(PlayAfterDeathSound());
+
         if (animator != null)
             animator.SetBool("isDead", true);
 
-        // Desativa o controle do jogador
         PlayerController movementScript = GetComponent<PlayerController>();
         if (movementScript != null)
-        {
             movementScript.enabled = false;
-        }
 
-        // Garante que o texto mostre 0 ao morrer
         currentHealth = 0;
         UpdateHealthText();
 
-        // Inicia corrotina para mostrar o painel com delay
-        StartCoroutine(ShowGameOverPanelWithDelay(1.5f)); // Delay de 1.5 segundos (ajustável)
+        StartCoroutine(ShowGameOverPanelWithDelay(1.5f));
+    }
+
+    private IEnumerator PlayAfterDeathSound()
+    {
+        yield return new WaitForSeconds(2f);
+
+        if (audioSource != null && afterDeathSound != null)
+            audioSource.PlayOneShot(afterDeathSound);
     }
 
     private IEnumerator ShowGameOverPanelWithDelay(float delay)
@@ -111,15 +124,13 @@ public class PlayerHealth : MonoBehaviour
             gameOverPanel.SetActive(true);
     }
 
-    // Chamado pelo botão "Reiniciar"
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    // Chamado pelo botão "Sair para Menu"
     public void GoToMenu()
     {
-        SceneManager.LoadScene("Menu"); // Certifique-se que a cena "Menu" está adicionada no Build Settings
+        SceneManager.LoadScene("Menu");
     }
 }

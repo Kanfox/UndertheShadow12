@@ -4,21 +4,40 @@ using System.Collections;
 
 public class ResetProgresso : MonoBehaviour
 {
-    public float delay = 1f; // Delay em segundos antes de resetar e voltar ao início
+    public float delay = 1f; // Tempo antes de resetar e voltar ao inÃ­cio
     public string cenaInicial = "CenaInicial"; // Nome da cena inicial
 
-    // Este método deve ser chamado pelo botão
+    [Header("Som ao perder")]
+    public AudioSource somDerrota; // Arraste o Ã¡udio aqui
+
+    private bool somTocado = false;
+
+    void Start()
+    {
+        // Toca o som automaticamente quando a cena de derrota inicia
+        TocarSomDerrota();
+    }
+
     public void ResetarJogo()
     {
         StartCoroutine(ResetCoroutine());
     }
 
+    void TocarSomDerrota()
+    {
+        if (!somTocado && somDerrota != null)
+        {
+            somDerrota.Play();
+            somTocado = true;
+        }
+    }
+
     private IEnumerator ResetCoroutine()
     {
-        // Aguarda o delay
+        // Espera o delay
         yield return new WaitForSeconds(delay);
 
-        // Limpa todos os dados salvos
+        // Apaga todos os dados salvos
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
 
