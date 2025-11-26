@@ -18,6 +18,9 @@ TagManager:
   - ItemEspecial
   - "NPC no ch\xE3o"
   - Interactable
+  - 1
+  - 2
+  - 3
   layers:
   - Default
   - TransparentFX
