@@ -312,7 +312,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: arwtttwtettewr
+  m_text: https://assetstore.unity.com/packages/d/environments/pixel-kit-car-free-
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
   m_sharedMaterial: {fileID: -3498154055235555480, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
@@ -377,7 +377,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -740.98615, w: -72.862206}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -448,7 +448,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: arwtttwtettewr
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
   m_sharedMaterial: {fileID: -3498154055235555480, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
@@ -554,7 +554,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: dd79e05e4b3fef14d9decc92d5da66c8, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: dd79e05e4b3fef14d9decc92d5da66c8, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -899,7 +899,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: arwtttwtettewr
+  m_text: https://assetstore.unity.com/packages/d/characters/evil-wizard-
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
   m_sharedMaterial: {fileID: -3498154055235555480, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
@@ -964,7 +964,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -741.7789, w: -69.14877}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1307,7 +1307,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: arwtttwtettewr
+  m_text: https://assetstore.unity.com/packages/d/environments/platformer-set-
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
   m_sharedMaterial: {fileID: -3498154055235555480, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
@@ -1372,7 +1372,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -738.77893, w: -80.95783}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1652,7 +1652,6 @@ MonoBehaviour:
   m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
-  m_Version: 2
   m_TaaSettings:
     m_Quality: 3
     m_FrameInfluence: 0.1
@@ -1660,6 +1659,7 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+  m_Version: 2
 --- !u!114 &638589736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1867,7 +1867,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: arwtttwtettewr
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
   m_sharedMaterial: {fileID: -3498154055235555480, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
@@ -2139,7 +2139,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: arwtttwtettewr
+  m_text: https://assetstore.unity.com/packages/d/characters/evil-wizard-
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
   m_sharedMaterial: {fileID: -3498154055235555480, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
@@ -2204,7 +2204,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -744.5888, w: -74.88609}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2411,7 +2411,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: arwtttwtettewr
+  m_text: https://assetstore.unity.com/packages/d/gui/icons/casual-fantasy-book-icon-pack--stylized-magic-books-
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
   m_sharedMaterial: {fileID: -3498154055235555480, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
@@ -2476,7 +2476,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -751.69025, w: -78.944595}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2547,7 +2547,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Antonio  '
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
   m_sharedMaterial: {fileID: -3498154055235555480, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
@@ -2683,7 +2683,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: https://assetstore.unity.com/packages/d/characters/hero-knight-pixel-art-
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
   m_sharedMaterial: {fileID: -3498154055235555480, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
@@ -2748,7 +2748,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -738.3829, w: -68.81416}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2819,7 +2819,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: arwtttwtettewr
+  m_text: https://assetstore.unity.com/packages/audio/sound-fx/foley/footsteps-essentials-
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
   m_sharedMaterial: {fileID: -3498154055235555480, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
@@ -2884,7 +2884,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -744.9216, w: -69.14877}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2960,7 +2960,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: arwtttwtettewr
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
   m_sharedMaterial: {fileID: -3498154055235555480, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
@@ -3025,7 +3025,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -729.1403, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3096,7 +3096,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: arwtttwtettewr
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
   m_sharedMaterial: {fileID: -3498154055235555480, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
@@ -3340,7 +3340,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4c1ba182cf4d8c34885edabd118bf205, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 4c1ba182cf4d8c34885edabd118bf205, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -3495,7 +3495,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: arwtttwtettewr
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
   m_sharedMaterial: {fileID: -3498154055235555480, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
@@ -3560,7 +3560,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -742.3174, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4012,11 +4012,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4046183868241135791, guid: af3ca033aaae9694ca5a8588a8dc0f39, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -382
+      value: -160
       objectReference: {fileID: 0}
     - target: {fileID: 4046183868241135791, guid: af3ca033aaae9694ca5a8588a8dc0f39, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 121
+      value: 86
       objectReference: {fileID: 0}
     - target: {fileID: 4350703170748339535, guid: af3ca033aaae9694ca5a8588a8dc0f39, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4690,7 +4690,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Ajudante:'
+  m_text: https://assetstore.unity.com/packages/d/environments/pixel-skies-demo-background-pack
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
   m_sharedMaterial: {fileID: -3498154055235555480, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
@@ -4717,8 +4717,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4755,7 +4755,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -522.5793, w: -51.485535}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4962,7 +4962,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: arwtttwtettewr
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
   m_sharedMaterial: {fileID: -3498154055235555480, guid: e992f46556bbda14e86f04085eb85d3e, type: 2}
@@ -5027,7 +5027,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -741.5119, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
