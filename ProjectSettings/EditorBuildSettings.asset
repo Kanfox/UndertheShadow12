@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes 1/Cena final1.unity
     guid: 64d5deb9c1345134da89a6958b590a14
+  - enabled: 1
+    path: Assets/Scenes 1/Cena Cena.unity
+    guid: e80585252803f6f4481b19b69ef6a96a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
